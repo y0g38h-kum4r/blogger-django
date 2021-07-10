@@ -122,7 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #images are actually saved here
 #website can find images, when we try to view them within the browser
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #full path to a directory where one would like django to store uploaded files
