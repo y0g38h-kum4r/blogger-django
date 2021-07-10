@@ -1,0 +1,25 @@
+<!-- similar to other routes, where extending the base template, and also need to display the form, that the login view will be passing to the template-->
+{% extends "blog/base.html" %} <!-- even within users app, can reference templates from blogapp-->
+{% load crispy_forms_tags %}
+{% block content %}
+	<div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group"> <!-- group related elements in form-->
+        <legend class="border-bottom mb-4">Log In</legend>
+          {{ form|crispy }} <!-- | to show that we want to use a filter, which does all of the styling -->
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Login</button>
+					<small class="text-muted ml-2">
+						<a href="{% url 'password_reset' %}">Forgot Password?</a>
+					</small>
+        </div>
+      </fieldset>
+    </form>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+        Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+      </small>
+    </div>
+  </div>
+{% endblock %}

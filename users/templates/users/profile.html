@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data"> <!-- enctype to make sure that form to pass image data for profile pic properly-->
+        {% csrf_token %}
+        <fieldset class="form-group"> <!-- group related elements in form-->
+          <legend class="border-bottom mb-4">Profile Info</legend>
+            {{ u_form|crispy }} <!-- | to show that we want to use a filter, which does all of the styling -->
+            {{ p_form|crispy }}
+          <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+{% endblock content %}
+
+
+
+ <!-- user need not pass in, that is built in django, that represents current logged in user -->
